@@ -140,11 +140,12 @@ document.getElementById("submit").onclick = function() {
   }
   current++;
   document.getElementById("submit").disabled = true;
-  setTimeout(showQuestion, 7000);
+  setTimeout(showQuestion, 10000);
   document.getElementById("score").innerText = `Score actuel : ${score} / ${questions.length}`;
 };
 
 // Initialise le quiz à l’ouverture de la page
 showQuestion();
+
 
 
