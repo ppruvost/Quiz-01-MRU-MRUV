@@ -1,6 +1,6 @@
-# Quiz MRU / MRUV avec explications - Niveau Seconde Professionnelle REMI
+# Quiz MRU / MRUV - Seconde Professionnelle REMI
 # Auteur : [M. PRUVOST]
-# Description : Quiz interactif de 20 questions sur le MRU et MRUV avec explications pédagogiques
+# Description : Quiz interactif de 20 questions sur le MRU et MRUV
 
 def poser_question(question, options, bonne_reponse, explication):
     print("
