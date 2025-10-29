@@ -203,8 +203,19 @@ function validateAnswer() {
 
   current++;
   setTimeout(showQuestion, 10000); // 10s avant la question suivante
+  if (current >= questions.length) {
+  endQuiz();
+  return;
+}
   document.getElementById("score").innerText = `Score actuel : ${score} / ${questions.length}`;
 }
+
+// =============================
+// Initialisation EmailJS (à faire une seule fois)
+// =============================
+(function() {
+  emailjs.init("TJHX0tkW1CCz7lv7a"); // ta clé publique
+})();
 
 // =============================
 // Fin du quiz + Envoi du mail
@@ -214,28 +225,23 @@ function endQuiz() {
   document.getElementById("score").innerText = `Résultat final : ${score} / ${questions.length}`;
   document.getElementById("explication").innerHTML = "";
 
-  // Préparation des données
+  // Préparation des données à envoyer
   const emailParams = {
     nom: user.nom,
     prenom: user.prenom,
     score: `${score} / ${questions.length}`,
+    email: "patrick.pruvost50@gmail.com" // destinataire fixe
   };
 
   // Envoi via EmailJS
-emailjs.init("TJHX0tkW1CCz7lv7a"); // Exemple : TJHX0tkW1CCz7lv7a
+  emailjs
+    .send("service_cgh817y", "template_ly7s41e", emailParams)
+    .then(() => {
+      alert("✅ Résultats envoyés par e-mail !");
+    })
+    .catch((error) => {
+      console.error("❌ Erreur EmailJS :", error);
+      alert("Erreur lors de l’envoi : " + JSON.stringify(error));
+    });
+}
 
-const emailParams = {
-  nom: user.nom,
-  prenom: user.prenom,
-  score: `${score} / ${questions.length}`,
-  email: "patrick.pruvost50@gmail.com" // ou user.email si tu demandes leur adresse
-};
-
-emailjs.send("service_cgh817y", "template_quiz_mru", emailParams)
-  .then(() => {
-    alert("Résultats envoyés par e-mail !");
-  })
-  .catch((error) => {
-    console.error("Erreur EmailJS :", error);
-    alert("Erreur lors de l’envoi : " + JSON.stringify(error));
-  });
