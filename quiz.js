@@ -1,3 +1,30 @@
+// Initialisation d'EmailJS
+(function() {
+  emailjs.init("TJHX0tkW1CCz7lv7a"); // clé publique fournie par EmailJS
+})();
+
+// Variables globales
+let user = {
+  nom: "",
+  prenom: "",
+};
+
+// Fonction pour valider le nom/prénom avant de lancer le quiz
+document.getElementById("startQuiz").addEventListener("click", () => {
+  const nom = document.getElementById("nom").value.trim();
+  const prenom = document.getElementById("prenom").value.trim();
+
+  if (!nom || !prenom) {
+    alert("Merci de renseigner votre nom et prénom avant de commencer.");
+    return;
+  }
+
+  user.nom = nom;
+  user.prenom = prenom;
+
+  document.getElementById("userForm").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+});
 // Définition des questions du quiz (index numérique pour bonne réponse)
 const questions = [
   {
@@ -166,5 +193,6 @@ document.getElementById("submit").onclick = function() {
 
 // Initialisation du quiz
 showQuestion();
+
 
 
