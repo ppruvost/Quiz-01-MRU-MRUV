@@ -222,18 +222,20 @@ function endQuiz() {
   };
 
   // Envoi via EmailJS
-  emailjs
-    .send("service_cgh817y", "template_ly7s41e", emailParams)
-    .then(() => {
-      alert("Résultats envoyés par email avec succès !");
-    })
-    .catch((error) => {
-      console.error("Erreur lors de l’envoi :", error);
-      alert("Une erreur est survenue lors de l’envoi de l’email.");
-    });
-}
+emailjs.init("TJHX0tkW1CCz7lv7a"); // Exemple : TJHX0tkW1CCz7lv7a
 
+const emailParams = {
+  nom: user.nom,
+  prenom: user.prenom,
+  score: `${score} / ${questions.length}`,
+  email: "patrick.pruvost50@gmail.com" // ou user.email si tu demandes leur adresse
+};
 
-
-
-
+emailjs.send("service_cgh817y", "template_quiz_mru", emailParams)
+  .then(() => {
+    alert("Résultats envoyés par e-mail !");
+  })
+  .catch((error) => {
+    console.error("Erreur EmailJS :", error);
+    alert("Erreur lors de l’envoi : " + JSON.stringify(error));
+  });
