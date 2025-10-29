@@ -99,8 +99,66 @@ const questions = [
     options: ["3 m/s", "7 m/s", "12 m/s", "15 m/s"],
     bonne_reponse: "12 m/s",
     explication: "v = a × t → 3 × 4 = 12 m/s car v0 = 0."
-  }
-  // ... (tu peux continuer les autres questions identiquement)
+  },
+ {
+    question: "11. Formule de la position en MRUV :",
+    options: ["x = x0 + v0 × t + (1/2) × a × t²", "x = v × t", "x = v0 + a × t", "x = a × t²"],
+    bonne_reponse: "x = x0 + v0 × t + (1/2) × a × t²",
+    explication: "Elle résume le déplacement total en tenant compte de la vitesse initiale et de l’accélération."
+ },
+ {
+    question: "12. Si v0 = 0, a = 2 m/s², t = 5 s, alors x = ?",
+    options: ["10 m", "25 m", "50 m", "100 m"],
+    bonne_reponse: "25 m",
+    explication: "x = ½ × a × t² = ½ × 2 × 25 = 25 m."
+ },
+ {
+    question: "13. L’unité d’une accélération :",
+    options: ["m/s", "m/s²", "m × s", "s/m²"],
+    bonne_reponse: "m/s²",
+    explication: "Car l’accélération est une variation de vitesse (m/s) par unité de temps (s)."
+ },
+ {
+    question: "14. Quand l’accélération est négative, le mouvement est :",
+    options: ["Accéléré", "Uniforme", "Ralenti", "Inversé"],
+    bonne_reponse: "Ralenti",
+    explication: "Une accélération négative signifie une diminution de la vitesse : c’est un ralentissement."
+ },
+ {
+    question: "15. Une voiture freine avec a = -4 m/s² pendant 3 s, en partant de 20 m/s. Sa vitesse est :",
+    options: ["8 m/s", "12 m/s", "20 m/s", "32 m/s"],
+    bonne_reponse: "8 m/s",
+    explication: "v = v0 + a × t → 20 + (-4 × 3) = 8 m/s."
+ },
+ {
+    question: "16. En MRUV, la pente du graphe vitesse–temps représente :",
+    options: ["La distance parcourue", "L’accélération", "La masse", "Le temps"],
+    bonne_reponse: "L’accélération",
+    explication: "La pente indique la variation de vitesse par unité de temps, donc l’accélération."
+ },
+ {
+    question: "17. Le graphique position–temps d’un MRUV est :",
+    options: ["Une droite", "Une courbe parabolique", "Une ligne horizontale", "Une sinusoïde"],
+    bonne_reponse: "Une courbe parabolique",
+    explication: "La position varie en fonction du carré du temps, d’où la forme parabolique."
+ },
+ {
+    question: "18. Une moto avec v0 = 10 m/s et a = 2 m/s² pendant 5 s. Sa vitesse finale ?",
+    options: ["10 m/s", "15 m/s", "20 m/s", "30 m/s"],
+    bonne_reponse: "20 m/s",
+    explication: "v = v0 + a × t → 10 + (2 × 5) = 20 m/s."
+ },
+ {
+    question: "19. Si la vitesse augmente de façon constante, le mouvement est :",
+    options: ["Uniforme", "Uniformément varié", "Périodique", "Statique"],
+    bonne_reponse: "Uniformément varié",
+    explication: "La variation constante de vitesse définit le MRUV."
+ },
+ {
+    question: "20. Quelle relation relie la distance, l’accélération et la vitesse quand v0 = 0 ?",
+    options: ["v² = 2 × a × d", "v = a × d", "d = v × a", "a = v / d"],
+    bonne_reponse: "v² = 2 × a × d",
+    explication: "Cette équation relie vitesse finale, accélération et déplacement quand la vitesse initiale est nulle."}
 ];
 
 // =============================
@@ -144,7 +202,7 @@ function validateAnswer() {
   }
 
   current++;
-  setTimeout(showQuestion, 3000); // 3s avant la question suivante
+  setTimeout(showQuestion, 10000); // 10s avant la question suivante
   document.getElementById("score").innerText = `Score actuel : ${score} / ${questions.length}`;
 }
 
@@ -174,6 +232,7 @@ function endQuiz() {
       alert("Une erreur est survenue lors de l’envoi de l’email.");
     });
 }
+
 
 
 
