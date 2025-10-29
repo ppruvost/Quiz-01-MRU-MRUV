@@ -190,9 +190,27 @@ document.getElementById("submit").onclick = function() {
   setTimeout(showQuestion, 10000);
   document.getElementById("score").innerText = `Score actuel : ${score} / ${questions.length}`;
 };
+// Préparation des données à envoyer
+  const emailParams = {
+    nom: user.nom,
+    prenom: user.prenom,
+    score: score,
+  };
 
+  // Envoi via EmailJS
+  emailjs
+    .send("service_cgh817y", "template_ly7s41e", emailParams)
+    .then(() => {
+      alert("Résultats envoyés par email avec succès !");
+    })
+    .catch((error) => {
+      console.error("Erreur lors de l’envoi :", error);
+      alert("Une erreur est survenue lors de l’envoi de l’email.");
+    });
+});
 // Initialisation du quiz
 showQuestion();
+
 
 
 
