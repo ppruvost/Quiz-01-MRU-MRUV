@@ -1,7 +1,7 @@
 // =============================
 // Initialisation d'EmailJS
 // =============================
-(function() {
+(function () {
   emailjs.init("TJHX0tkW1CCz7lv7a"); // clé publique EmailJS
 })();
 
@@ -174,7 +174,6 @@ function showQuestion() {
     html += `<button id="submit">Valider</button>`;
     document.getElementById("quiz").innerHTML = html;
     document.getElementById("explication").innerHTML = "";
-
     document.getElementById("submit").onclick = validateAnswer;
   } else {
     endQuiz();
@@ -202,20 +201,15 @@ function validateAnswer() {
   }
 
   current++;
-  setTimeout(showQuestion, 10000); // 10s avant la question suivante
-  if (current >= questions.length) {
-  endQuiz();
-  return;
-}
   document.getElementById("score").innerText = `Score actuel : ${score} / ${questions.length}`;
-}
 
-// =============================
-// Initialisation EmailJS (à faire une seule fois)
-// =============================
-(function() {
-  emailjs.init("TJHX0tkW1CCz7lv7a"); // ta clé publique
-})();
+  // attendre avant la prochaine question
+  if (current < questions.length) {
+    setTimeout(showQuestion, 10000);
+  } else {
+    setTimeout(endQuiz, 5000); // petite pause avant le message final
+  }
+}
 
 // =============================
 // Fin du quiz + Envoi du mail
@@ -225,7 +219,6 @@ function endQuiz() {
   document.getElementById("score").innerText = `Résultat final : ${score} / ${questions.length}`;
   document.getElementById("explication").innerHTML = "";
 
-  // Préparation des données à envoyer
   const emailParams = {
     nom: user.nom,
     prenom: user.prenom,
@@ -233,7 +226,6 @@ function endQuiz() {
     email: "patrick.pruvost50@gmail.com" // destinataire fixe
   };
 
-  // Envoi via EmailJS
   emailjs
     .send("service_cgh817y", "template_ly7s41e", emailParams)
     .then(() => {
